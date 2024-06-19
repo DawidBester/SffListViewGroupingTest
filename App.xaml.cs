@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SffListViewGroupingTest.ViewModels;
 
 namespace SffListViewGroupingTest
 {
@@ -8,7 +7,7 @@ namespace SffListViewGroupingTest
         public App(IConfiguration config)
         {
             InitializeComponent();
-            
+
             MainPage = new AppShell();
         }
     }

@@ -1,6 +1,5 @@
-﻿
-using Microsoft.Maui.Controls;
-using SffListViewGroupingTest.ViewModels;
+﻿using SffListViewGroupingTest.ViewModels;
+
 using Syncfusion.Maui.DataSource;
 
 
@@ -18,11 +17,11 @@ namespace SffListViewGroupingTest
 
             BookInfoSfListView.DataSource?.GroupDescriptors.Add(new GroupDescriptor()
             {
-                PropertyName = "ExerciseSetName",
+                PropertyName = "Category",
                 KeySelector = (object obj1) =>
                 {
                     var item = ((BookInfo)obj1);
-                    return item; //.Category;
+                    return item.Category; //.Category;
                 }
 
             });
@@ -32,7 +31,7 @@ namespace SffListViewGroupingTest
         private void Button_OnClicked(object? sender, EventArgs e)
         {
             var key = (sender as Button)?.CommandParameter;
-            
+
             var book = (BookInfo)key;
 
             var group = _bookInfoRepository.BookInfoCollection.FirstOrDefault(x => x == book);

@@ -3,9 +3,11 @@
     x:Class="SffListViewGroupingTest.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="http://schemas.syncfusion.com/maui"
     xmlns:converters="clr-namespace:SffListViewGroupingTest.Converters"
     xmlns:extensions="clr-namespace:Syncfusion.Maui.DataSource.Extensions;assembly=Syncfusion.Maui.DataSource"
     xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:sfExpander="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
     xmlns:viewModels="clr-namespace:SffListViewGroupingTest.ViewModels"
     x:DataType="viewModels:BookInfoRepository">
 
@@ -19,105 +21,105 @@
     <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
         <listView:SfListView
             x:Name="BookInfoSfListView"
-            AutoFitMode="DynamicHeight" IsStickyHeader="False" IsStickyGroupHeader="True" AllowGroupExpandCollapse="True"
+            AllowGroupExpandCollapse="True"
+            AutoFitMode="DynamicHeight"
             BackgroundColor="Azure"
+            IsStickyGroupHeader="True"
+            IsStickyHeader="True"
             ItemSpacing="5"
             ItemsSource="{Binding BookInfoCollection}">
+            <buttons:SfListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Gainsboro">
+                        <Label Text="List Header" TextColor="Black" FontSize="20"
+                               FontAttributes="Bold"/>
+
+                    </Grid>
+                </DataTemplate>
+
+            </buttons:SfListView.HeaderTemplate>
 
             <listView:SfListView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="extensions:GroupResult">
-                    <Grid BackgroundColor="{Binding Items, Converter={StaticResource GetGroupColor}}" 
-                          RowDefinitions="*,Auto">
-                        <Label
-                            Grid.Row="0"
-                            Margin="5"
-                            BackgroundColor="White"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="{Binding Key, Converter={x:StaticResource GetBookName}}"
-                            TextColor="Black"
-                            VerticalOptions="Center" />
-                        <!--<Button Grid.Row="1" Text="Show/>Hide" Clicked="Button_OnClicked" CommandParameter="{Binding Key}"/>-->
+                    <Grid
+                        HorizontalOptions="Fill"
+                        RowDefinitions="*"
+                        VerticalOptions="Fill">
+                        <Border
+                            BackgroundColor="#80FFFFFF"
+                            HorizontalOptions="Fill"
+                            Stroke="DimGray"
+                            StrokeShape="RoundRectangle 15,15,15,15"
+                            VerticalOptions="Fill">
+                            <sfExpander:SfExpander 
+                                x:Name="TimerNameSfExpander"
+                                Margin="5"
+                                HeaderIconPosition="End"
+                                IsExpanded="False">
+                                <sfExpander:SfExpander.Header>
+                                  
+                                    <Grid BackgroundColor="LightSkyBlue"
+                                        RowDefinitions="*"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="Fill">
+                                        <Label
+                                            Grid.Row="0"
+                                           
+                                            FontAttributes="Bold"
+                                            FontSize="10"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Key}"
+                                            TextColor="Black"
+                                            VerticalOptions="Fill"
+                                            VerticalTextAlignment="Center" />
+
+                                      
+                                    </Grid>
+                                 
+                                </sfExpander:SfExpander.Header>
+                                <sfExpander:SfExpander.Content>
+                                    <Grid BackgroundColor="Yellow"
+                                        HorizontalOptions="Fill"
+                                        RowDefinitions="50"
+                                        VerticalOptions="Fill">
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Padding="5,10,0,0"
+                                            FontSize="12"
+                                            HorizontalOptions="Fill"
+                                            Text="Group Header Expanded..."
+                                            TextColor="Black"
+                                            VerticalOptions="Fill" />
+
+
+
+
+                                    </Grid>
+                                </sfExpander:SfExpander.Content>
+                            </sfExpander:SfExpander>
+                        </Border>
                     </Grid>
+
+                 
                 </DataTemplate>
             </listView:SfListView.GroupHeaderTemplate>
             <listView:SfListView.ItemTemplate>
-                <!--IsVisible="{Binding IsExpanded}"-->
+                <!--  IsVisible="{Binding IsExpanded}"  -->
                 <DataTemplate x:DataType="viewModels:BookInfo">
-                    <Grid 
+                    <Grid
                         HorizontalOptions="Fill"
-                        RowDefinitions="Auto,Auto"
-                        VerticalOptions="Fill">
-                        <!--<Label Text="Some random text" HeightRequest="100" BackgroundColor="CornflowerBlue" />-->
-
-                        <listView:SfListView Grid.Row="1"
-                            x:Name="BookInfoSfListView"
-                            AutoFitMode="DynamicHeight"
-                            BackgroundColor="Azure" 
-                            IsScrollingEnabled="False"
-                            ItemSpacing="5"
-                            ItemsSource="{Binding SubBookInfoCollection}">
-                           <listView:SfListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid 
-                                        BackgroundColor="{Binding CategoryColor}"
-                                        HorizontalOptions="Fill"
-                                        RowDefinitions="Auto,Auto,Auto"
-                                        VerticalOptions="Fill">
-                                        <Label HeightRequest="100"
-                                            Grid.Row="0"
-                                            BackgroundColor="{Binding CategoryColor}"
-                                            FontSize="20"
-                                            Text="{Binding Category}"
-                                            TextColor="Black" />
-
-                                        <Label HeightRequest="100"
-                                               Grid.Row="1"
-                                               FontSize="20"
-                                               Text="{Binding BookName}"
-                                               TextColor="Black" />
-
-                                        <Label HeightRequest="100"
-                                               Grid.Row="2"
-                                               FontSize="15"
-                                               HorizontalOptions="Fill"
-                                               Text="{Binding BookDescription}"
-                                               TextColor="Black"
-                                               VerticalOptions="Fill" />
-
-                                    </Grid>
-                                </DataTemplate>
-                            </listView:SfListView.ItemTemplate>
-
-                        </listView:SfListView>
+                        RowDefinitions="100"
+                        VerticalOptions="Fill"
+                        IsVisible="True">
+                        
+                        <Label Text="ItemTemplate Items" BackgroundColor="Salmon" ></Label>
+                       
 
                     </Grid>
-                    <!--<Grid RowDefinitions="*,Auto">
-                    -->
-                    <!--
-                        BackgroundColor="{Binding CategoryColor}"
-                        <Label
-                            Grid.Row="0"
-                            BackgroundColor="{Binding CategoryColor}"
-                            FontSize="20"
-                            Text="{Binding Category}"
-                            TextColor="Black" />-->
-                    <!--
-                        <Label
-                            Grid.Row="0"
-                            FontSize="20"
-                            Text="{Binding BookName}"
-                            TextColor="Black" />
-
-                        <Label
-                            Grid.Row="1"
-                            FontSize="15"
-                            HorizontalOptions="Fill"
-                            Text="{Binding BookDescription}"
-                            TextColor="Black"
-                            VerticalOptions="Fill" />
-
-                    </Grid>-->
+                   
                 </DataTemplate>
             </listView:SfListView.ItemTemplate>
         </listView:SfListView>
