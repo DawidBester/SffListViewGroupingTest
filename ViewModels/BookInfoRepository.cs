@@ -41,37 +41,8 @@ public class BookInfoRepository : INotifyPropertyChanged
                 CategoryColor = Colors.LightCoral,
                 BookName = "To Kill a Mockingbird",
                 BookDescription = "A Pulitzer Prize-winning novel by Harper Lee.",
-                SubBookInfoCollection = new ObservableCollection<SubBookInfo>()
-                {
-                    new SubBookInfo
-                    {
-                        Category = "Fiction",
-                        CategoryColor = Colors.LightCoral,
-                        BookName = "To Kill a Mockingbird",
-                        BookDescription = "A Pulitzer Prize-winning novel by Harper Lee."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Non-Fiction",
-                        CategoryColor = Colors.LightSkyBlue,
-                        BookName = "Sapiens: A Brief History of Humankind",
-                        BookDescription = "An exploration of the history of Homo sapiens by Yuval Noah Harari."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Science Fiction",
-                        CategoryColor = Colors.LightGreen,
-                        BookName = "Dune",
-                        BookDescription = "A science fiction novel by Frank Herbert, set in the distant future amidst a feudal interstellar society."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Fantasy",
-                        CategoryColor = Colors.LightPink,
-                        BookName = "The Hobbit",
-                        BookDescription = "A fantasy novel by J.R.R. Tolkien, introducing the world of Middle-earth."
-                    }
-                }
+
+
 
             },
             new BookInfo
@@ -80,37 +51,7 @@ public class BookInfoRepository : INotifyPropertyChanged
                 CategoryColor = Colors.LightSkyBlue,
                 BookName = "Sapiens: A Brief History of Humankind",
                 BookDescription = "An exploration of the history of Homo sapiens by Yuval Noah Harari.",
-                SubBookInfoCollection = new ObservableCollection<SubBookInfo>()
-                {
-                    new SubBookInfo
-                    {
-                        Category = "Fiction",
-                        CategoryColor = Colors.LightCoral,
-                        BookName = "To Kill a Mockingbird",
-                        BookDescription = "A Pulitzer Prize-winning novel by Harper Lee."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Non-Fiction",
-                        CategoryColor = Colors.LightSkyBlue,
-                        BookName = "Sapiens: A Brief History of Humankind",
-                        BookDescription = "An exploration of the history of Homo sapiens by Yuval Noah Harari."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Science Fiction",
-                        CategoryColor = Colors.LightGreen,
-                        BookName = "Dune",
-                        BookDescription = "A science fiction novel by Frank Herbert, set in the distant future amidst a feudal interstellar society."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Fantasy",
-                        CategoryColor = Colors.LightPink,
-                        BookName = "The Hobbit",
-                        BookDescription = "A fantasy novel by J.R.R. Tolkien, introducing the world of Middle-earth."
-                    }
-                }
+
 
             },
             new BookInfo
@@ -119,37 +60,7 @@ public class BookInfoRepository : INotifyPropertyChanged
                 CategoryColor = Colors.LightGreen,
                 BookName = "Dune",
                 BookDescription = "A science fiction novel by Frank Herbert, set in the distant future amidst a feudal interstellar society.",
-                SubBookInfoCollection = new ObservableCollection<SubBookInfo>()
-                {
-                    new SubBookInfo
-                    {
-                        Category = "Fiction",
-                        CategoryColor = Colors.LightCoral,
-                        BookName = "To Kill a Mockingbird",
-                        BookDescription = "A Pulitzer Prize-winning novel by Harper Lee."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Non-Fiction",
-                        CategoryColor = Colors.LightSkyBlue,
-                        BookName = "Sapiens: A Brief History of Humankind",
-                        BookDescription = "An exploration of the history of Homo sapiens by Yuval Noah Harari."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Science Fiction",
-                        CategoryColor = Colors.LightGreen,
-                        BookName = "Dune",
-                        BookDescription = "A science fiction novel by Frank Herbert, set in the distant future amidst a feudal interstellar society."
-                    },
-                    new SubBookInfo
-                    {
-                        Category = "Fantasy",
-                        CategoryColor = Colors.LightPink,
-                        BookName = "The Hobbit",
-                        BookDescription = "A fantasy novel by J.R.R. Tolkien, introducing the world of Middle-earth."
-                    }
-                }
+
             },
             new BookInfo
             {
@@ -355,18 +266,6 @@ public class BookInfoRepository : INotifyPropertyChanged
 }
 
 
-public partial class SubBookInfo
-{
-    public Color CategoryColor { get; set; }
-    public string? Category { get; set; }
-    public string? BookName { get; set; }
-    public string? BookDescription { get; set; }
-
-
-
-}
-
-
 public partial class BookInfo : ObservableObject
 {
     public Color CategoryColor { get; set; }
@@ -375,7 +274,5 @@ public partial class BookInfo : ObservableObject
     public string? BookDescription { get; set; }
 
     [ObservableProperty] private bool _isExpanded;
-
-    public ObservableCollection<SubBookInfo> SubBookInfoCollection { get; set; } = new ObservableCollection<SubBookInfo>();
-
 }
+

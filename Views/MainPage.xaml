@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SffListViewGroupingTest.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="http://schemas.syncfusion.com/maui"
+    xmlns:extensions="clr-namespace:Syncfusion.Maui.DataSource.Extensions;assembly=Syncfusion.Maui.DataSource"
+    xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:viewModels="clr-namespace:SffListViewGroupingTest.ViewModels"
+    xmlns:views="clr-namespace:SffListViewGroupingTest.Views"
+    x:DataType="viewModels:BookInfoRepository">
+
+    <Grid
+        ColumnDefinitions="*,*"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+
+        <!--  ListView one with header expansion  -->
+        <listView:SfListView
+            x:Name="BookInfoSfListView"
+            AllowGroupExpandCollapse="True"
+            AutoFitMode="DynamicHeight"
+            BackgroundColor="Azure"
+            IsStickyGroupHeader="True"
+            IsStickyHeader="True"
+            ItemSpacing="5"
+            ItemsSource="{Binding BookInfoCollection}">
+
+            <listView:SfListView.Behaviors>
+                <views:ListViewGroupingBehaviour />
+
+            </listView:SfListView.Behaviors>
+
+            <buttons:SfListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid
+                        BackgroundColor="Gainsboro"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Expand"
+                            TextColor="Black" />
+
+                    </Grid>
+                </DataTemplate>
+
+            </buttons:SfListView.HeaderTemplate>
+
+            <listView:SfListView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="extensions:GroupResult">
+                    <Grid
+                        HorizontalOptions="Fill"
+                        RowDefinitions="*"
+                        VerticalOptions="Fill">
+                        <Border
+                            BackgroundColor="#80FFFFFF"
+                            HorizontalOptions="Fill"
+                            Stroke="DimGray"
+                            StrokeShape="RoundRectangle 15,15,15,15"
+                            VerticalOptions="Fill">
+
+
+                            <Grid
+                                BackgroundColor="LightSkyBlue"
+                                ColumnDefinitions="*,Auto"
+                                HorizontalOptions="Fill"
+                                RowDefinitions="*, Auto"
+                                VerticalOptions="Fill">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Key}"
+                                    TextColor="Black"
+                                    VerticalOptions="Fill"
+                                    VerticalTextAlignment="Center" />
+
+                                <Label
+                                    x:Name="GroupHeaderLabel"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Padding="5,10,5,10"
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding IsExpand}"
+                                    Text="Group Header Expanded..."
+                                    TextColor="Black"
+                                    VerticalOptions="Fill" />
+
+
+
+
+                            </Grid>
+
+                        </Border>
+                    </Grid>
+
+
+                </DataTemplate>
+            </listView:SfListView.GroupHeaderTemplate>
+            <listView:SfListView.ItemTemplate>
+
+                <DataTemplate x:DataType="viewModels:BookInfo">
+                    <Grid
+                        HorizontalOptions="Fill"
+                        IsVisible="True"
+                        RowDefinitions="100"
+                        VerticalOptions="Fill">
+
+                        <Label BackgroundColor="Salmon" Text="ItemTemplate Items" />
+
+                    </Grid>
+
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+        </listView:SfListView>
+
+        <!--  ListView two without header expansion  -->
+        <listView:SfListView
+            x:Name="BookInfoSfListViewNoExpand"
+            Grid.Column="1"
+            AllowGroupExpandCollapse="True"
+            AutoFitMode="DynamicHeight"
+            BackgroundColor="Azure"
+            IsStickyGroupHeader="True"
+            IsStickyHeader="True"
+            ItemSpacing="5"
+            ItemsSource="{Binding BookInfoCollection}">
+
+            <listView:SfListView.Behaviors>
+                <views:ListViewGroupingBehaviour />
+
+            </listView:SfListView.Behaviors>
+
+            <buttons:SfListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid
+                        BackgroundColor="Gainsboro"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="NoExpand"
+                            TextColor="Black" />
+
+                    </Grid>
+                </DataTemplate>
+
+            </buttons:SfListView.HeaderTemplate>
+
+            <listView:SfListView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="extensions:GroupResult">
+                    <Grid
+                        HorizontalOptions="Fill"
+                        RowDefinitions="*"
+                        VerticalOptions="Fill">
+                        <Border
+                            BackgroundColor="#80FFFFFF"
+                            HorizontalOptions="Fill"
+                            Stroke="DimGray"
+                            StrokeShape="RoundRectangle 15,15,15,15"
+                            VerticalOptions="Fill">
+
+
+                            <Grid
+                                BackgroundColor="LightSkyBlue"
+                                ColumnDefinitions="*,Auto"
+                                HorizontalOptions="Fill"
+                                RowDefinitions="*, Auto"
+                                VerticalOptions="Fill">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Key}"
+                                    TextColor="Black"
+                                    VerticalOptions="Fill"
+                                    VerticalTextAlignment="Center" />
+
+                                <!--<Label
+                             x:Name="GroupHeaderLabel"
+                             Grid.Row="1"
+                             Grid.Column="0"
+                             Padding="5,10,5,10"
+                             FontSize="16"
+                             HorizontalOptions="Fill"
+                             HorizontalTextAlignment="Center"
+                             Text="Group Header Expanded..."
+                             TextColor="Black"
+                             VerticalOptions="Fill"
+                             IsVisible="{Binding  IsExpand}">
+
+
+                         </Label>-->
+
+
+
+
+                            </Grid>
+
+                        </Border>
+                    </Grid>
+
+
+                </DataTemplate>
+            </listView:SfListView.GroupHeaderTemplate>
+            <listView:SfListView.ItemTemplate>
+
+                <DataTemplate x:DataType="viewModels:BookInfo">
+                    <Grid
+                        HorizontalOptions="Fill"
+                        IsVisible="True"
+                        RowDefinitions="100"
+                        VerticalOptions="Fill">
+
+                        <Label BackgroundColor="Salmon" Text="ItemTemplate Items" />
+
+                    </Grid>
+
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+        </listView:SfListView>
+
+    </Grid>
+
+</ContentPage>
